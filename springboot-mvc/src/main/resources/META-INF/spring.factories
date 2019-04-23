@@ -1,0 +1,3 @@
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+com.jimi.spring.boot.common.ProjectConstraintViolationFailureAnalyzer
+org.springframework.context.ApplicationListener=com.jimi.spring.boot.common.MvcAppListener
