@@ -1,1 +1,6 @@
 org.springframework.context.ApplicationListener=com.jimi.spring.boot.listen.MyListen
+
+## open spring boot app config
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.jimi.spring.boot.config.autoconfigure.LibXAutoConfiguration,\
+com.jimi.spring.boot.config.autoconfigure.LibXWebAutoConfiguration
