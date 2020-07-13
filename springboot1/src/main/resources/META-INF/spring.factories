@@ -4,3 +4,7 @@ org.springframework.context.ApplicationListener=com.jimi.spring.boot.listen.MyLi
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.jimi.spring.boot.config.autoconfigure.LibXAutoConfiguration,\
 com.jimi.spring.boot.config.autoconfigure.LibXWebAutoConfiguration
+
+## environment
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.jimi.spring.boot.config.environment.ConfigEnvironmentPostProcessor
