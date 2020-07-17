@@ -3,6 +3,8 @@ package com.jimi.spring.framework.core.javaconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
@@ -22,6 +24,10 @@ public class AppBeanConfigB {
     @Bean
     public  DataSource dataSource(){
         //return datasource;
-        return null;
+        return  new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.HSQL)
+                .addScript("schema.sql")
+                .addScript("data.sql")
+                .build();
     }
 }
