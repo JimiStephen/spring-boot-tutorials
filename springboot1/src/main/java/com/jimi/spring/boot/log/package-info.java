@@ -16,6 +16,9 @@
  * application.properties
  *  logging.file / logging.path
  *
+ *
+ * logback-spring.xml
+ *
  * <b>Log leverls</b>
  * logging.level.root=WARN
  * logging.level.org.springframework.web=DEBUG
