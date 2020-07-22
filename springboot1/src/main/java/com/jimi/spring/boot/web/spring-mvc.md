@@ -56,3 +56,62 @@ It uses the ResourceHttpRequestHandler from Spring MVC so that you can modify th
  registry.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));
  }
  }`
+>
+>Registering Servlets, Filters, and Listeners as Spring Beans
+>If convention-based mapping is not flexible enough, you can use the ServletRegistrationBean,
+ FilterRegistrationBean, and ServletListenerRegistrationBean classes for complete
+ control.
+>
+>
+>**Servlet Context Initialization**
+ Embedded servlet containers do not directly execute the Servlet
+ 3.0+ javax.servlet.ServletContainerInitializer interface or Spring’s
+ org.springframework.web.WebApplicationInitializer interface.
+>
+>If you need to perform servlet context initialization in a Spring
+ Boot application, you should register a bean that implements the
+ org.springframework.boot.web.servlet.ServletContextInitializer interface. The
+ single onStartup method provides access to the ServletContext and, if necessary, can easily be
+ used as an adapter to an existing WebApplicationInitializer.
+>
+>**Scanning for Servlets, Filters, and listeners**
+ When using an embedded container, automatic registration of classes annotated with @WebServlet,
+ @WebFilter, and @WebListener can be enabled by using @ServletComponentScan.
+>@ServletComponentScan has no effect in a standalone container, where the container’s builtin discovery mechanisms are used instead.
+>
+>The ServletWebServerApplicationContext
+ Under the hood, Spring Boot uses a different type of ApplicationContext for
+ embedded servlet container support. The ServletWebServerApplicationContext is a
+ special type of WebApplicationContext that bootstraps itself by searching for a
+ single ServletWebServerFactory bean. Usually a TomcatServletWebServerFactory,
+ JettyServletWebServerFactory, or UndertowServletWebServerFactory has been autoconfigured.
+>
+>**Customizing Embedded Servlet Containers**
+> application.properties file. Common server settings include:
+> * • Network settings: Listen port for incoming HTTP requests (server.port), interface address to bind
+ to server.address, and so on.
+> * • Session settings: Whether the session is persistent (server.servlet.session.persistence),
+ session timeout (server.servlet.session.timeout), location of session
+ data (server.servlet.session.store-dir), and session-cookie configuration
+ (server.servlet.session.cookie.*).
+> * • Error management: Location of the error page (server.error.path) and so on.
+> * • SSL
+` server.port=8443
+ server.ssl.key-store=classpath:keystore.jks
+ server.ssl.key-store-password=secret
+ server.ssl.key-password=another-secret`
+> * • HTTP compression
+>`server.compression.enabled=true`
+>
+**Programmatic Customization**
+If you need to programmatically configure your embedded servlet
+container, you can register a Spring bean that implements the
+WebServerFactoryCustomizer interface. WebServerFactoryCustomizer provides access to
+the ConfigurableServletWebServerFactory, which includes numerous customization setter
+methods.
+> com.jimi.spring.boot.web.config.WebserverCustomizationBean
+>
+>**Customizing ConfigurableServletWebServerFactory Directly**
+> WebConfig @bean ConfigurableServletWebServerFactory
+>
+>
