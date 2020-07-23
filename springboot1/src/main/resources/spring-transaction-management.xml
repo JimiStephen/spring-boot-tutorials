@@ -18,6 +18,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
         <tx:attributes>
             <!-- all methods starting with 'get' are read-only -->
             <tx:method name="get*" read-only="true"/>
+            <tx:method name="updateStock" no-rollback-for="InstrumentNotFoundException"/>
             <!-- other methods use the default transaction settings (see below) -->
             <tx:method name="*"/>
         </tx:attributes>
