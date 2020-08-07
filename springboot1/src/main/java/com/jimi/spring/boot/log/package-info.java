@@ -18,7 +18,16 @@
  *
  *
  * logback-spring.xml
- *
+ * <?xml version="1.0" encoding="UTF-8" ?>
+ * <springProfile name="staging">
+ *     <!-- configuration to be enabled when the "staging" profile is active -->
+ * </springProfile>
+ * <springProfile name="dev, staging">
+ * <!-- configuration to be enabled when the "dev" or "staging" profiles are active -->
+ * </springProfile>
+ * <springProfile name="!production">
+ * <!-- configuration to be enabled when the "production" profile is not active -->
+ * </springProfile>
  * <b>Log leverls</b>
  * logging.level.root=WARN
  * logging.level.org.springframework.web=DEBUG

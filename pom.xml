@@ -25,6 +25,8 @@
         <module>springboot-profile</module>
         <module>springboot-webjsp</module>
         <module>springboot-mvc</module>
+        <module>spring-boot-simple</module>
+        <module>spring-framerwork</module>
     </modules>
 
     <dependencyManagement>
